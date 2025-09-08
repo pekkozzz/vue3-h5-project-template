@@ -1,0 +1,5 @@
+// px to rem
+$baseFontSize: calc(750 / 10);
+@function p2r($px) {
+  @return calc($px / $baseFontSize) * 1rem;
+}
