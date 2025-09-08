@@ -4,10 +4,13 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": "^20.19.0 || >=22.12.0"
+    "node": "^20.19.0 || >=22.12.0",
+    "pnpm": "8.x"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
+    "start": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "test:unit": "vitest",
