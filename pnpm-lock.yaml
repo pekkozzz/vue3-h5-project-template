@@ -11,6 +11,9 @@ dependencies:
   '@nutui/nutui':
     specifier: ^4.3.14
     version: 4.3.14(unplugin-vue-components@29.0.0)(vue@3.5.21)
+  '@types/axios':
+    specifier: ^0.14.4
+    version: 0.14.4
   axios:
     specifier: ^1.11.0
     version: 1.11.0
@@ -1213,6 +1216,15 @@ packages:
   /@tsconfig/node22@22.0.2:
     resolution: {integrity: sha512-Kmwj4u8sDRDrMYRoN9FDEcXD8UpBSaPQQ24Gz+Gamqfm7xxn+GBR7ge/Z7pK8OXNGyUzbSwJj+TH6B+DS/epyA==}
     dev: true
+
+  /@types/axios@0.14.4:
+    resolution: {integrity: sha512-9JgOaunvQdsQ/qW2OPmE5+hCeUB52lQSolecrFrthct55QekhmXEwT203s20RL+UHtCQc15y3VXpby9E7Kkh/g==}
+    deprecated: This is a stub types definition. axios provides its own type definitions, so you do not need this installed.
+    dependencies:
+      axios: 1.11.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@types/chai@5.2.2:
     resolution: {integrity: sha512-8kB30R7Hwqf40JPiKhVzodJs2Qc1ZJ5zuT3uzw5Hq/dhNCl3G3l83jfpdI1e20BP348+fV7VIL/+FxaXkqBmWg==}

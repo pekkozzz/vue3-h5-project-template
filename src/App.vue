@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-console.log(import.meta.env.release.VITE_HOST)
 </script>
 
 <template>
