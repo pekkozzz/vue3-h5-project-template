@@ -8,21 +8,21 @@
 6，模块化管理
 */
 import axios, { type AxiosInstance, type AxiosRequestConfig } from 'axios'
+import { toCustomerLogin } from './jump'
 
 const instance: AxiosInstance = axios.create({
-  baseURL: process.env.VITE_URL_MOBILE,
-  timeout: 10000,
+  baseURL: import.meta.env.VITE_KALAMINI_API,
+  timeout: 15000,
   headers: {
     'Content-Type': 'application/json',
   },
 })
 
-// 请求拦截器
+// 不同端token设置可能不一样（面客、员工端）
 instance.interceptors.request.use(
   (config) => {
-    const cookies = document.cookie
-    const token =
-      cookies.match(/token=([^;]*)/) && cookies.match(/token=([^;]*)/)[1]
+    const cookies:any = document.cookie
+    const token = cookies.match(/token=([^;]*)/) && cookies.match(/token=([^;]*)/)[1]
     if (token) {
       config.headers['x-token'] = token
       config.headers['HK-Auth-User-Token'] = token
@@ -35,14 +35,14 @@ instance.interceptors.request.use(
   }
 )
 
-// 响应拦截器
+// 不同端返回数据格式可能不一样（面客、员工端）
 instance.interceptors.response.use(
   (response) => {
     const res = response.data
     if (res.code !== 200) {
       if (res.code === 401) {
-        showToast.text(res?.message || '登录超时')
-        window.location.href = '/login'
+        console.log('未登录')
+        toCustomerLogin()
       }
       return Promise.reject(new Error(res.message || '未知错误'))
     }
@@ -52,9 +52,7 @@ instance.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 401:
-          // 未授权，跳转到登录页
-          localStorage.removeItem('token')
-          window.location.href = '/login'
+          toCustomerLogin()
           break
         case 404:
           console.error('请求的资源不存在')
